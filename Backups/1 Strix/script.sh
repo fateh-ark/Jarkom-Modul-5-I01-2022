@@ -14,3 +14,13 @@ apt-get update
 apt-get install isc-dhcp-relay -y
 wait
 echo "isc-dhcp-relay established"
+
+# Configure DHCRELAY
+cat /root/dhcprelay.conf > /etc/default/isc-dhcp-relay
+wait
+echo "dhcrelay configuration established"
+
+iptables -A FORWARD -i eth0 -p tcp -d 192.168.122.38 -j LOGGING
+iptables -A FORWARD -i eth0 -p udp -d 192.168.122.38 -j LOGGING
+
+service rsyslog restart

@@ -8,3 +8,8 @@ apt-get update
 apt-get install isc-dhcp-relay -y
 wait
 echo "isc-dhcp-relay established"
+
+# Configure DHCRELAY
+cat /root/dhcprelay.conf > /etc/default/isc-dhcp-relay
+wait
+echo "dhcrelay configuration established"
